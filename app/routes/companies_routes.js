@@ -1,9 +1,6 @@
 module.exports = function (app, db) {
   app.get('/companies', (req, res) => {
-    db.collection('companies').find({}, {
-      "infoPageData": 0,
-      "chartStats": 0
-    }).toArray((err, result) => {
+    db.collection('companies').find().project({infoPageData: 0, chartStats: 0} ).toArray((err, result) => {
       if (err) {
         res.send({
           'error': 'An error has occurred'
