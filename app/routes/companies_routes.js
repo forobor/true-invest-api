@@ -1,5 +1,5 @@
 module.exports = function (app, db) {
-  app.get('/companies', (req, res) => {
+  app.get('/api/companies', (req, res) => {
     db.collection('companies').find().project({infoPageData: 0, chartStats: 0} ).toArray((err, result) => {
       if (err) {
         res.send({
@@ -11,7 +11,7 @@ module.exports = function (app, db) {
     });
   });
 
-  app.post('/company', (req, res) => {
+  app.post('/api/company', (req, res) => {
     const company = {
       id: +req.body.id,
       name: req.body.name,
@@ -33,7 +33,7 @@ module.exports = function (app, db) {
     });
   });
 
-  app.get('/company/:id', (req, res) => {
+  app.get('/api/company/:id', (req, res) => {
     const id = {
       'id': +req.params.id
     };
@@ -48,7 +48,7 @@ module.exports = function (app, db) {
     });
   });
 
-  app.delete('/company/:id', (req, res) => {
+  app.delete('/api/company/:id', (req, res) => {
     const id = {
       'id': +req.params.id
     }
@@ -63,7 +63,7 @@ module.exports = function (app, db) {
     });
   });
 
-  app.put('/company/:id', (req, res) => {
+  app.put('/api/company/:id', (req, res) => {
     const id = {
       'id': +req.params.id
     };
